@@ -83,7 +83,7 @@ pip install -r requirements.txt
 Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
 
 env
-Copiar código
+
 DATABASE_URL=sqlite:///./lunysse.db
 CORS_ORIGINS=http://localhost:3000
 SECRET_KEY=sua_chave_secreta
