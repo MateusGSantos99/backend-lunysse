@@ -65,16 +65,22 @@ Copiar código
 ```bash
 git clone https://github.com/1067790/backend-lunysse.git
 cd backend-lunysse
+
+
 🧱 2. Crie e ative o ambiente virtual
 bash
 Copiar código
 python -m venv venv
 source venv/bin/activate   # Linux / Mac
 venv\Scripts\activate      # Windows
+
+
 📦 3. Instale as dependências
 bash
 Copiar código
 pip install -r requirements.txt
+
+
 🔑 4. Configure as variáveis de ambiente
 Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
 
@@ -85,6 +91,8 @@ CORS_ORIGINS=http://localhost:3000
 SECRET_KEY=sua_chave_secreta
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
+
+
 ▶️ 5. Execute a aplicação
 bash
 Copiar código
