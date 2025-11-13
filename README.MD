@@ -84,12 +84,11 @@ Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
 
 env
 
-DATABASE_URL=sqlite:///./lunysse.db
-CORS_ORIGINS=http://localhost:3000
-SECRET_KEY=sua_chave_secreta
+SECRET_KEY=123456789
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
-
+DATABASE_URL=sqlite:///./lunysse.db
+CORS_ORIGINS=http://localhost:3000,http://localhost:5173
 
 ▶️ 5. Execute a aplicação
 bash
