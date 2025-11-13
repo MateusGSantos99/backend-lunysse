@@ -54,8 +54,6 @@ codigo/
 ├── lunysse.db # Banco SQLite local
 └── README.md
 
-yaml
-Copiar código
 
 ---
 
