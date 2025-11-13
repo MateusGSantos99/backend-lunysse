@@ -5,19 +5,12 @@ Lunysse API é um backend desenvolvido em FastAPI para gerenciamento de atendime
 🚀 Tecnologias Utilizadas
 
 Python 3.10+
-
 FastAPI
-
 SQLAlchemy
-
 SQLite (ou outro banco configurável via .env)
-
 Pydantic
-
 dotenv
-
 CORS Middleware
-
 Machine Learning Services (customizados)
 
 📂 Estrutura do Projeto
@@ -99,13 +92,9 @@ Recurso	Descrição
 🧩 Funcionalidades Planejadas / Existentes
 
 ✅ Autenticação e controle de acesso (JWT)
-
 ✅ CRUD completo de pacientes e psicólogos
-
 ✅ Agendamento de consultas
-
 ✅ Geração e gerenciamento de relatórios
-
 ✅ Análise automatizada via modelos de Machine Learning
 
 🧠 Integração futura com dashboards analíticos
