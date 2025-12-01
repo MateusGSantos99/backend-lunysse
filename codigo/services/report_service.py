@@ -1,9 +1,10 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import func, extract
 from models.models import Appointment, Patient, AppointmentStatus
 from schemas.schemas import ReportsData, ReportStats, FrequencyData, StatusData, RiskAlert
 from services.ml_services import calculate_patient_risk
 from typing import List
-import random
+import calendar
 from datetime import datetime, date
 
 def generate_reports_data(db: Session, psychologist_id: int) -> ReportsData:
@@ -34,9 +35,37 @@ def generate_reports_data(db: Session, psychologist_id: int) -> ReportsData:
         risk_alerts=len(high_risk_patients)
     )
     
-    # Dados de frequência (simulados)
-    months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-    frequency_data = [FrequencyData(month=month, sessions=random.randint(10, 30)) for month in months]
+    # Dados de frequência por mês baseado nas datas dos atendimentos
+    sessions_by_month = db.query(
+        extract('year', Appointment.date).label('year'),
+        extract('month', Appointment.date).label('month'),
+        func.count(Appointment.id).label('sessions')
+    ).filter(
+        Appointment.psychologist_id == psychologist_id,
+        Appointment.status.in_([AppointmentStatus.CONCLUIDO, AppointmentStatus.AGENDADO])
+    ).group_by(
+        extract('year', Appointment.date),
+        extract('month', Appointment.date)
+    ).order_by('year', 'month').all()
+    
+    frequency_data = []
+    for session_data in sessions_by_month:
+        month_name = calendar.month_name[int(session_data.month)][:3]
+        frequency_data.append(FrequencyData(
+            month=f"{month_name}/{int(session_data.year)}",
+            sessions=session_data.sessions
+        ))
+    
+    # Se não há dados, criar últimos 6 meses com 0 sessões
+    if not frequency_data:
+        current_date = datetime.now()
+        for i in range(5, -1, -1):
+            month_date = datetime(current_date.year, max(1, current_date.month - i), 1)
+            month_name = calendar.month_name[month_date.month][:3]
+            frequency_data.append(FrequencyData(
+                month=f"{month_name}/{month_date.year}",
+                sessions=0
+            ))
     
     # Dados de status
     status_data = []

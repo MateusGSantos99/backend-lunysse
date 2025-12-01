@@ -42,6 +42,7 @@ class Patient(Base):
     birth_date = Column(Date)
     age = Column(Integer)
     status = Column(String)
+    notes = Column(Text, default="")  # Campo para anotações do psicólogo
     psychologist_id = Column(Integer, ForeignKey("users.id"), nullable=True)
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     
@@ -69,17 +70,25 @@ class Request(Base):
     __tablename__ = "requests"
     
     id = Column(Integer, primary_key=True, index=True)
+    
+    # Agora referencia o modelo Patient corretamente
+    patient_id = Column(Integer, ForeignKey("patients.id"), nullable=True)
+    patient = relationship("Patient", foreign_keys=[patient_id])
+    
     patient_name = Column(String)
     patient_email = Column(String)
     patient_phone = Column(String)
+    
     preferred_psychologist = Column(Integer, ForeignKey("users.id"))
+    psychologist = relationship("User", foreign_keys=[preferred_psychologist])
+    
     description = Column(Text)
     urgency = Column(String)
     preferred_dates = Column(Text)  # JSON string
     preferred_times = Column(Text)  # JSON string
+    
     status = Column(Enum(RequestStatus), default=RequestStatus.PENDENTE)
     notes = Column(Text, default="")
+    
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
     updated_at = Column(DateTime, nullable=True)
-    
-    psychologist = relationship("User")

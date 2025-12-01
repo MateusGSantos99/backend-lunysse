@@ -4,7 +4,7 @@ from core.database import get_db
 from models.models import User, Patient, UserType
 from schemas.schemas import UserCreate, UserLogin, Token, User as UserSchema
 from services.auth_service import authenticate_user
-from Utils import get_password_hash, create_access_token, calculate_age
+from utils import get_password_hash, create_access_token, calculate_age
 from datetime import timedelta
 
 router = APIRouter(prefix="/auth", tags=["auth"])

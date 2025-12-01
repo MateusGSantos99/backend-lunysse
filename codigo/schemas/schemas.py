@@ -49,12 +49,26 @@ class Patient(PatientBase):
     id: int
     age: int
     status: str
+    notes: Optional[str] = ""
     psychologist_id: Optional[int] = None
     total_sessions: Optional[int] = 0
+    last_session: Optional[datetime] = None
     created_at: datetime
 
     class Config:
         from_attributes = True
+        
+class PatientUpdate(BaseModel):
+    name: Optional[str] = None
+    phone: Optional[str] = None
+    birth_date: Optional[date] = None
+    psychologist_id: Optional[int] = None
+    status: Optional[str] = None
+    notes: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
 
 # Appointment schemas
 class AppointmentBase(BaseModel):
@@ -89,6 +103,7 @@ class Appointment(AppointmentBase):
 
 # Request schemas
 class RequestBase(BaseModel):
+    patient_id: int
     patient_name: str
     patient_email: EmailStr
     patient_phone: str

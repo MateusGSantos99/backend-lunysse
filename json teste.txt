@@ -1,0 +1,96 @@
+psicologo
+{
+  "email": "psicologo.2025@outlook.com",
+  "name": "psicologo teste",
+  "type": "psicologo",
+  "password": "123456",
+  "specialty": "TCC",
+  "crp": "01123456",
+  "phone": "35999082544",
+  "birth_date": "1098-11-26"
+}
+paciente
+{
+  "email": "paciente.2025@outlook.com",
+  "name": "paciente teste",
+  "type": "paciente",
+  "password": "123456",
+  "phone": "035998758544",
+  "birth_date": "1085-11-26"
+}
+login paciente
+{
+  "email": "paciente.2025@outlook.com",
+  "password": "123456"
+}
+{
+  "patient_id": 1,
+  "patient_name": "paciente teste",
+  "patient_email": "paciente.2025@outlook.com",
+  "patient_phone": "035998758544",
+  "preferred_psychologist": 1,
+  "description": "teste",
+  "urgency": "alta",
+  "preferred_dates": [
+    "2025-11-26"
+  ],
+  "preferred_times": [
+    "14:00"
+  ]
+}
+login psicologo
+{
+  "email": "psicologo.2025@outlook.com",
+  "password": "123456"
+}
+ 
+ 
+{
+  "status": "aceito",
+  "notes": "teste"
+}
+ 
+{
+  "status": "rejeitado",
+  "notes": "teste"
+}
+ 
+ 
+para atividade
+ 
+criar um Agendamentos - usar metodo post
+ 
+{
+  "patient_id": 1,
+  "psychologist_id": 1,
+  "date": "2025-11-26",
+  "time": "14:00",
+  "description": "teste",
+  "duration": 50
+}
+ 
+reagendar um Agendamentos - usar metodo put
+id do agendamento 1
+ 
+{
+  "date": "2025-11-26",
+  "time": "15:00",
+  "status": "reagendado",
+  "description": "teste",
+  "duration": 50,
+}
+ 
+cancelar um agendamento - usar put
+ 
+id do agendamento 1
+{
+  "date": "2025-11-26",
+  "time": "15:00",
+  "status": "cancelado",
+  "description": "teste",
+  "duration": 50,
+}
+ 
+ataulizar o codigo
+ 
+email service, requeste e env
