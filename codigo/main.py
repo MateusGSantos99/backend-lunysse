@@ -14,10 +14,10 @@ app = FastAPI(
     version="2.0.0"
 )
 
-# CORS
+# === CORS FIX ===
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
+    allow_origins=["*"],  # <-- CORRIGIDO: libera todas as origens no DEV
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
